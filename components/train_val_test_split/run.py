@@ -2,6 +2,7 @@
 """
 This script splits the provided dataframe in test and remainder
 """
+
 import argparse
 import logging
 import pandas as pd
@@ -15,7 +16,6 @@ logger = logging.getLogger()
 
 
 def go(args):
-
     run = wandb.init(job_type="train_val_test_split")
     run.config.update(args)
 
@@ -31,14 +31,13 @@ def go(args):
         df,
         test_size=args.test_size,
         random_state=args.random_seed,
-        stratify=df[args.stratify_by] if args.stratify_by != 'none' else None,
+        stratify=df[args.stratify_by] if args.stratify_by != "none" else None,
     )
 
     # Save to output files
-    for df, k in zip([trainval, test], ['trainval', 'test']):
+    for df, k in zip([trainval, test], ["trainval", "test"]):
         logger.info(f"Uploading {k}_data.csv dataset")
         with tempfile.NamedTemporaryFile("w") as fp:
-
             df.to_csv(fp.name, index=False)
 
             log_artifact(
@@ -56,15 +55,25 @@ if __name__ == "__main__":
     parser.add_argument("input", type=str, help="Input artifact to split")
 
     parser.add_argument(
-        "test_size", type=float, help="Size of the test split. Fraction of the dataset, or number of items"
+        "test_size",
+        type=float,
+        help="Size of the test split. Fraction of the dataset, or number of items",
     )
 
     parser.add_argument(
-        "--random_seed", type=int, help="Seed for random number generator", default=42, required=False
+        "--random_seed",
+        type=int,
+        help="Seed for random number generator",
+        default=42,
+        required=False,
     )
 
     parser.add_argument(
-        "--stratify_by", type=str, help="Column to use for stratification", default='none', required=False
+        "--stratify_by",
+        type=str,
+        help="Column to use for stratification",
+        default="none",
+        required=False,
     )
 
     args = parser.parse_args()

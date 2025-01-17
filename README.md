@@ -53,7 +53,7 @@ and click on `Fork` in the upper right corner. This will create a fork in your G
 repository that is under your control. Now clone the repository locally so you can start working on it:
 
 ```
-git clone https://github.com/[your github username]/build-ml-pipeline-for-short-term-rental-prices.git
+git clone https://github.com/mnowicki94/build-ml-pipeline-for-short-term-rental-prices.git
 ```
 
 and go into the repository:
@@ -79,12 +79,12 @@ Let's make sure we are logged in to Weights & Biases. Get your API key from W&B 
 then paste your key into this command:
 
 ```bash
-> wandb login [your API key]
+> wandb login 8bf651099620de50b9719b8c9e9ac0e051343403
 ```
 
 You should see a message similar to:
 ```
-wandb: Appending key for api.wandb.ai to your netrc file: /home/[your username]/.netrc
+wandb: Appending key for api.wandb.ai to your netrc file: /home/m-nowicki94-maciej-nowicki-org/.netrc
 ```
 
 ### Cookie cutter
