@@ -37,6 +37,9 @@ def go(args):
     # Save the cleaned data to a CSV file
     output_file = "cleaned_data.csv"
     logger.info("Saving cleaned data to %s", output_file)
+
+    idx = df["longitude"].between(-74.25, -73.50) & df["latitude"].between(40.5, 41.2)
+    df = df[idx].copy()
     df.to_csv(output_file, index=False)
 
     # Log the cleaned data artifact
